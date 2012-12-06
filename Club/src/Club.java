@@ -74,29 +74,38 @@ public class Club {
 	
 	public void Releve(){
 		int i;
-		Graph.tr(50);
-		Graph.sop("\n" + this.nomClub + "\n");
-		Graph.tr(50);
-		Graph.sop("\n" + this.adherents.length + "\n");
-		Graph.tr(50);
-		Graph.sdl(1);
-		Graph.sop("\n" + );
+		int max =0;
+		for(i=0;i<adherents.length;i++){
+			if(adherents[i].nom.length() > max) max = adherents[i].nom.length();
+			if(adherents[i] instanceof Salarie)
+				if(((Salarie) adherents[i]).getEmployeur().length() > max)
+					max = ((Salarie) adherents[i]).getEmployeur().length();
+			if(adherents[i] instanceof Etudiant)
+				if(((Etudiant) adherents[i]).getFaculte().length() > max)
+					max = ((Etudiant) adherents[i]).getFaculte().length();
+		}
+		Graph.tr((int) (max*4.5));Graph.sop("\n" + this.nomClub + "\n");
+		Graph.tr((int) (max*4.5));Graph.sop("\n" + this.adherents.length + "\n");
+		Graph.tr((int) (max*4.5));Graph.sdl(1);
 		for(i=0;i<adherents.length;i++) {
-			Graph.sop(adherents[i].getClass() + "    " +
-					adherents[i].nom + "    " + 
-					adherents[i].age + "    ");
+			String str = ("" + (adherents[i].getClass())).substring(6);
+			String s1 = Graph.justifie(
+					Graph.justifie(str, max, adherents[i].nom), max+10, "" + adherents[i].age);
 			if(adherents[i] instanceof Etudiant) {
-				Graph.sop(((Etudiant)adherents[i]).getFaculte()+ "    " +
-						((Etudiant)adherents[i]).getNumeroEtudiant());
+				String str2 = ((Etudiant)adherents[i]).getFaculte();
+				String str3 = ((Etudiant)adherents[i]).getNumeroEtudiant();
+				String s2 = Graph.justifie(Graph.justifie(s1, max+15, str2), max+30, str3);
+				Graph.sop(s2);
 			}
 			else if(adherents[i] instanceof Salarie) {
-				Graph.sop(((Salarie)adherents[i]).getEmployeur()+ "    " +
-						((Salarie)adherents[i]).getNumeroSecu());
+				String str4 = ((Salarie)adherents[i]).getEmployeur();
+				String str5 = ((Salarie)adherents[i]).getNumeroSecu();
+				String s3 = Graph.justifie(Graph.justifie(s1, max+15, str4), max+30, str5);
+				Graph.sop(s3);
 			}
 			Graph.sdl(1);
-			Graph.tr(50);
+			Graph.tr((int) (max*4.5));
 			Graph.sdl(1);
 		}
 	}
-	
 }

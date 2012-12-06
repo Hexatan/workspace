@@ -12,8 +12,10 @@ public class Graph {
 		for(int i = 1;i<n;i++) System.out.print(Graph.ct);
 	}
 	
-	public static void sp(int n) {
-		for(int i = 1;i<n;i++) System.out.print(Graph.ce);
+	public static String sp(int n) {
+		String str = "";
+		for(int i = 1;i<n;i++) str += Graph.ce;
+		return str;
 	}
 	
 	public static void sop(String str) {
@@ -22,5 +24,12 @@ public class Graph {
 	
 	public static void sopn(String str) {
 		System.out.print(str);
+	}
+	
+	public static String justifie(String av, int n, String str) {
+		int nbe = 0;
+		if(av.length()>=n) n = av.length()+1;
+		else {nbe = n - av.length();}
+		return av + Graph.sp(nbe) + str;
 	}
 }
