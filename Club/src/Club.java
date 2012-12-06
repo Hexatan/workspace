@@ -84,9 +84,16 @@ public class Club {
 				if(((Etudiant) adherents[i]).getFaculte().length() > max)
 					max = ((Etudiant) adherents[i]).getFaculte().length();
 		}
-		Graph.tr((int) (max*4.5));Graph.sop("\n" + this.nomClub + "\n");
-		Graph.tr((int) (max*4.5));Graph.sop("\n" + this.adherents.length + "\n");
+		Graph.tr((int) (max*4.5));Graph.sopn("\n" + this.nomClub);
+		Graph.tr((int) (max*4.5));Graph.sopn("\n" + this.adherents.length);
 		Graph.tr((int) (max*4.5));Graph.sdl(1);
+		String s0b = Graph.justifie(
+					Graph.justifie(
+						Graph.justifie(
+							Graph.justifie("Type", max, "Nom"), max+10, "Age"), max+15, "Fac"),max+30,"NumeroEtu");
+		String s0 = Graph.justifie(Graph.justifie("", max+15, "Employeur"),max+30,"NumeroSecu");
+		Graph.sopn(s0);
+		Graph.sop(s0b);
 		for(i=0;i<adherents.length;i++) {
 			String str = ("" + (adherents[i].getClass())).substring(6);
 			String s1 = Graph.justifie(
