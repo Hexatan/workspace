@@ -50,5 +50,4 @@ public class Personne {
 	public String toString() {
 		return "nom=" + nom + ", age=" + age;
 	}
-	
 }

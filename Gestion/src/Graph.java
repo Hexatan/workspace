@@ -23,7 +23,7 @@ public class Graph {
 	}
 	
 	public static void sopn(String str) {
-		System.out.print(str);
+		System.out.println(str);
 	}
 	
 	public static String justifie(String av, int n, String str) {

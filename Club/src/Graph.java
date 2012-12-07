@@ -12,6 +12,11 @@ public class Graph {
 		for(int i = 1;i<n;i++) System.out.print(Graph.ct);
 	}
 	
+	public static void trsdl(int n) {
+		for(int i = 1;i<n;i++) Graph.sop(""+Graph.ct);
+		Graph.sdl(1);
+	}
+	
 	public static String sp(int n) {
 		String str = "";
 		for(int i = 1;i<n;i++) str += Graph.ce;

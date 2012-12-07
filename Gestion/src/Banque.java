@@ -12,8 +12,7 @@ public class Banque {
 	}
 
 	public void ajcompte(Client cl) {
-		ArrayList<CompteReleve> clone = (ArrayList<CompteReleve>) cl.getLc()
-				.clone();
+		ArrayList<CompteReleve> clone = (ArrayList<CompteReleve>) cl.getLc().clone();
 		lcompte = clone;
 	}
 

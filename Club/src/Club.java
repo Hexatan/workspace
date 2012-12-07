@@ -68,7 +68,7 @@ public class Club {
 	}
 	
 	public String toString() {
-		return "Club [nomClub=" + nomClub + ", adherents="
+		return "nomClub=" + nomClub + ", adherents="
 				+ Arrays.toString(adherents) + "]";
 	}
 	
@@ -84,16 +84,15 @@ public class Club {
 				if(((Etudiant) adherents[i]).getFaculte().length() > max)
 					max = ((Etudiant) adherents[i]).getFaculte().length();
 		}
-		Graph.tr((int) (max*4.5));Graph.sopn("\n" + this.nomClub);
-		Graph.tr((int) (max*4.5));Graph.sopn("\n" + this.adherents.length);
-		Graph.tr((int) (max*4.5));Graph.sdl(1);
-		String s0b = Graph.justifie(
-					Graph.justifie(
-						Graph.justifie(
-							Graph.justifie("Type", max, "Nom"), max+10, "Age"), max+15, "Fac"),max+30,"NumeroEtu");
+		Graph.tr(max*5);Graph.sopn("\n" + this.nomClub);
+		Graph.tr(max*5);Graph.sopn("\n" + this.adherents.length);
+		Graph.trsdl(max*5);
+		String s0b = Graph.justifie(Graph.justifie(Graph.justifie(Graph.justifie(
+				"Type", max, "Nom"), max+10, "Age"), max+15, "Fac"),max+30,"NumeroEtu");
 		String s0 = Graph.justifie(Graph.justifie("", max+15, "Employeur"),max+30,"NumeroSecu");
 		Graph.sopn(s0);
-		Graph.sop(s0b);
+		Graph.sopn(s0b);
+		Graph.trsdl(max*5);
 		for(i=0;i<adherents.length;i++) {
 			String str = ("" + (adherents[i].getClass())).substring(6);
 			String s1 = Graph.justifie(
@@ -110,9 +109,28 @@ public class Club {
 				String s3 = Graph.justifie(Graph.justifie(s1, max+15, str4), max+30, str5);
 				Graph.sop(s3);
 			}
+			else if(adherents[i] instanceof Personne) Graph.sop(s1);
 			Graph.sdl(1);
-			Graph.tr((int) (max*4.5));
-			Graph.sdl(1);
+			Graph.trsdl(max*5);
 		}
+	}
+	
+	public void ajouterAd(Personne p){
+		int l = adherents.length;
+		Personne[] temp = new Personne[l+1];
+		for(int i=0;i<l;i++) temp[i] = adherents[i];
+		adherents = new Personne[l+1];
+		for(int i=0;i<l;i++) adherents[i] = temp[i];
+		adherents[l] = p;
+	}
+	
+	public void ajouterTab(Personne[] tp) {
+		int l = adherents.length;
+		int l2 = tp.length;
+		Personne[] temp = new Personne[l+l2];
+		for(int i=0;i<l;i++) temp[i] = adherents[i];
+		adherents = new Personne[l+l2];
+		for(int i=0;i<l;i++) adherents[i] = temp[i];
+		for(int i=(l);i<(l+l2);i++) adherents[i] = tp[i-l];
 	}
 }
