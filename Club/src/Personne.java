@@ -6,8 +6,7 @@ public class Personne {
 	public Personne() {}
 	
 	public Personne(Personne p) {
-		this.nom = p.nom;
-		this.age = p.age;
+		this(p.nom,p.age);
 	}
 	
 	public Personne(String n,int a) {
@@ -16,21 +15,15 @@ public class Personne {
 	}
 	
 	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (o == null)
-			return false;
-		if (getClass() != o.getClass())
-			return false;
+		if (this == o) return true;
+		if (o == null) return false;
+		if (getClass() != o.getClass()) return false;
 		Personne other = (Personne) o;
-		if (age != other.age)
-			return false;
+		if (age != other.age) return false;
 		if (nom == null) {
-			if (other.nom != null)
-				return false;
+			if (other.nom != null) return false;
 		}
-		else if (!nom.equals(other.nom))
-			return false;
+		else if (!nom.equals(other.nom)) return false;
 		return true;
 	}
 	

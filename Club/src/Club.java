@@ -74,7 +74,7 @@ public class Club {
 	
 	public void Releve(){
 		int i;
-		int max =0;
+		int max = 0;
 		for(i=0;i<adherents.length;i++){
 			if(adherents[i].nom.length() > max) max = adherents[i].nom.length();
 			if(adherents[i] instanceof Salarie)
@@ -84,8 +84,11 @@ public class Club {
 				if(((Etudiant) adherents[i]).getFaculte().length() > max)
 					max = ((Etudiant) adherents[i]).getFaculte().length();
 		}
-		Graph.tr(max*5);Graph.sopn("\n" + this.nomClub);
-		Graph.tr(max*5);Graph.sopn("\n" + this.adherents.length);
+		Graph.tr(max*5);
+		Graph.sdl(1);
+		Graph.sop(Graph.sp((int)((max*5)/2)-(this.nomClub.length()/2)));
+		Graph.sop(this.nomClub);Graph.sdl(1);
+		Graph.tr(max*5);Graph.sopn("\nNombre d'adhérents : " + this.adherents.length);
 		Graph.trsdl(max*5);
 		String s0b = Graph.justifie(Graph.justifie(Graph.justifie(Graph.justifie(
 				"Type", max, "Nom"), max+10, "Age"), max+15, "Fac"),max+30,"NumeroEtu");

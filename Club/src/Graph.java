@@ -37,4 +37,8 @@ public class Graph {
 		else {nbe = n - av.length();}
 		return av + Graph.sp(nbe) + str;
 	}
+	
+	public static String centre(String str, int n) {
+		return Graph.sp(n/2) + str;
+	}
 }
