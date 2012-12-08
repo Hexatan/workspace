@@ -11,7 +11,7 @@ public Club(String unNomClub, ArrayList<Personne> desAdherents) {
 		this.nomClub = unNomClub;
 		adherents = new ArrayList<Personne>();
 		for(int i=0;i<(desAdherents.size());i++) {
-			adherents.set(i, desAdherents.get(i));
+			adherents.add(desAdherents.get(i));
 		}
 	}
 	
@@ -21,12 +21,12 @@ public Club(String unNomClub, ArrayList<Personne> desAdherents) {
 		int l = c.adherents.size();
 		for(int i=0;i<l;i++){
 			if(c.adherents.get(i) instanceof Salarie) {
-				this.adherents.set(i, new Salarie((Salarie) c.adherents.get(i)));
+				this.adherents.add(new Salarie((Salarie) c.adherents.get(i)));
 			}
 			else if(c.adherents.get(i) instanceof Etudiant) {
-				this.adherents[i] = new Etudiant((Etudiant) c.adherents.get(i));
+				this.adherents.add(new Etudiant((Etudiant) c.adherents.get(i)));
 			}
-			else this.adherents[i] = new Personne(c.adherents.get(i));
+			else this.adherents.add(new Personne(c.adherents.get(i)));
 		}
 	}
 	
@@ -41,24 +41,24 @@ public Club(String unNomClub, ArrayList<Personne> desAdherents) {
 	public void init(){
 		this.nomClub = Lire.jstring("Nom ?");
 		int na=Lire.jint("Nbre adhérents ?"),i = 0;
-		this.adherents = new Personne[na];
+		this.adherents = new ArrayList<Personne>();
 		String c="";
 		while(i!=na) {
 			do {
 				c = Lire.jstring("C ?");
 				if(c.equalsIgnoreCase("salarie")) {
-					this.adherents[i] = new Salarie();
-					this.adherents[i].init();
+					this.adherents.set(i, new Salarie());
+					this.adherents.get(i).init();
 				}
 			
 				else if(c.equalsIgnoreCase("etudiant")) {
-					this.adherents[i] = new Etudiant();
-					this.adherents[i].init();
+					this.adherents.set(i, new Etudiant());
+					this.adherents.get(i).init();
 				}
 				
 				else if(c.equalsIgnoreCase("aucun")) {
-					this.adherents[i] = new Personne();
-					this.adherents[i].init();
+					this.adherents.set(i, new Personne());
+					this.adherents.get(i).init();
 				}
 			}
 			while((c.equalsIgnoreCase("salarie")==false)&&
@@ -70,14 +70,14 @@ public Club(String unNomClub, ArrayList<Personne> desAdherents) {
 	
 	public String toString() {
 		return "nomClub=" + nomClub + ", adherents="
-				+ Arrays.toString(adherents) + "]";
+				+ Arrays.asList(adherents);
 	}
 	
 	public void Releve(){
 		int i;
 		int max = 0;
-		for(i=0;i<adherents.length;i++){
-			if(adherents.get(i).nom.length() > max) max = adherents[i].nom.length();
+		for(i=0;i<adherents.size();i++){
+			if(adherents.get(i).nom.length() > max) max = adherents.get(i).nom.length();
 			if(adherents.get(i) instanceof Salarie)
 				if(((Salarie) adherents.get(i)).getEmployeur().length() > max)
 					max = ((Salarie) adherents.get(i)).getEmployeur().length();
@@ -89,7 +89,7 @@ public Club(String unNomClub, ArrayList<Personne> desAdherents) {
 		Graph.sdl(1);
 		Graph.sop(Graph.sp((int)((max*5)/2)-(this.nomClub.length()/2)));
 		Graph.sop(this.nomClub);Graph.sdl(1);
-		Graph.tr(max*5);Graph.sopn("\nNombre d'adhérents : " + this.adherents.length);
+		Graph.tr(max*5);Graph.sopn("\nNombre d'adhérents : " + this.adherents.size());
 		Graph.trsdl(max*5);
 		String s0b = Graph.justifie(Graph.justifie(Graph.justifie(Graph.justifie(
 				"Type", max, "Nom"), max+10, "Age"), max+15, "Fac"),max+30,"NumeroEtu");
@@ -97,7 +97,7 @@ public Club(String unNomClub, ArrayList<Personne> desAdherents) {
 		Graph.sopn(s0);
 		Graph.sopn(s0b);
 		Graph.trsdl(max*5);
-		for(i=0;i<adherents.length;i++) {
+		for(i=0;i<adherents.size();i++) {
 			String str = ("" + (adherents.get(i).getClass())).substring(6);
 			String s1 = Graph.justifie(
 					Graph.justifie(str, max, adherents.get(i).nom), max+10, "" + adherents.get(i).age);
@@ -120,21 +120,15 @@ public Club(String unNomClub, ArrayList<Personne> desAdherents) {
 	}
 	
 	public void ajouterAd(Personne p){
-		int l = adherents.length;
-		Personne[] temp = new Personne[l+1];
-		for(int i=0;i<l;i++) temp[i] = adherents.get(i);
-		adherents = new Personne[l+1];
-		for(int i=0;i<l;i++) adherents[i] = temp[i];
-		adherents[l] = p;
+		this.adherents.add(p);
 	}
 	
 	public void ajouterTab(Personne[] tp) {
-		int l = adherents.size();
-		int l2 = tp.length;
-		Personne[] temp = new Personne[l+l2];
-		for(int i=0;i<l;i++) temp[i] = adherents.get(i);
-		adherents = new Personne[l+l2];
-		for(int i=0;i<l;i++) adherents[i] = temp[i];
-		for(int i=(l);i<(l+l2);i++) adherents[i] = tp[i-l];
+		int l = tp.length;
+		for(int i=0;i<l;i++) this.adherents.add(tp[i]);
+	}
+	
+	public void ajouteList(ArrayList<Personne> lp) {
+		this.adherents.addAll(lp);
 	}
 }
