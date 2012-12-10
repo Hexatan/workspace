@@ -39,6 +39,10 @@ public class Graph {
 	}
 	
 	public static String centre(String str, int n) {
-		return Graph.sp(n/2) + str;
+		return Graph.sp((n/2)-(str.length()/2)) + str;
+	}
+
+	public static void sop(Object obj) {
+		System.out.print(obj);
 	}
 }
