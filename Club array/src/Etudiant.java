@@ -1,3 +1,8 @@
+/**
+ * 
+ * @author gaetan duvaux
+ *
+ */
 public class Etudiant extends Personne {
 	
 	private String numeroEtudiant;
@@ -20,10 +25,10 @@ public class Etudiant extends Personne {
 	
 	/**
 	 * Constructeur avec nom,age,numero étudiant,une fac
-	 * @param unNom
-	 * @param unAge
-	 * @param unNumeroEtudiant
-	 * @param uneFac
+	 * @param unNom nom de l'instance courante.
+	 * @param unAge age de l'instance courante.
+	 * @param unNumeroEtudiant numéro étudiant de l'insatance courante.
+	 * @param uneFac faculté de l'instance courante.
 	 */
 	public Etudiant(String unNom,int unAge, String unNumeroEtudiant, String uneFac) {
 		super(unNom,unAge);
@@ -32,26 +37,17 @@ public class Etudiant extends Personne {
 	}
 	
 	/**
-	 * Redéfinission de equals
+	 * Redéfinition de equals
 	 */
 	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (!super.equals(o))
-			return false;
-		if (getClass() != o.getClass())
-			return false;
+		super.equals(o);
 		Etudiant other = (Etudiant) o;
 		if (faculte == null) {
-			if (other.faculte != null)
-				return false;
-		} else if (!faculte.equals(other.faculte))
-			return false;
+			if (other.faculte != null) return false;
+		} else if (!faculte.equals(other.faculte)) return false;
 		if (numeroEtudiant == null) {
-			if (other.numeroEtudiant != null)
-				return false;
-		} else if (!numeroEtudiant.equals(other.numeroEtudiant))
-			return false;
+			if (other.numeroEtudiant != null) return false;
+		} else if (!numeroEtudiant.equals(other.numeroEtudiant)) return false;
 		return true;
 	}
 	
@@ -84,7 +80,7 @@ public class Etudiant extends Personne {
 	 * Redéfinission de toString pour la classe 
 	 */
 	public String toString() {
-		return super.toString() + " numeroEtudiant=" + numeroEtudiant
-				+ ", faculte=" + faculte;
+		return super.toString() + "\nnumeroEtudiant=" + numeroEtudiant
+				+ "\nfaculte=" + faculte;
 	}
 }

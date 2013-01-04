@@ -1,3 +1,8 @@
+/**
+ * 
+ * @author gaetan duvaux
+ *
+ */
 public class Salarie extends Personne {
 	
 	private String NumeroSecu;
@@ -32,15 +37,10 @@ public class Salarie extends Personne {
 	}
 	
 	/**
-	 * Redéfinission de la méthode equals
+	 * Redéfinition de la méthode equals
 	 */
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (!(obj instanceof Salarie))
-			return false;
+		super.equals(obj);
 		Salarie other = (Salarie) obj;
 		if (Employeur == null) {
 			if (other.Employeur != null)
@@ -81,11 +81,11 @@ public class Salarie extends Personne {
 	}
 	
 	/**
-	 * Redéfinission de la méthode toString
+	 * Redéfinition de la méthode toString
 	 */
 	public String toString() {
-		return super.toString() + " NumeroSecu=" + NumeroSecu
-				+ ", Employeur=" + Employeur;
+		return super.toString() + "\nNumeroSecu=" + NumeroSecu
+				+ "\nEmployeur=" + Employeur;
 	}
 	
 }

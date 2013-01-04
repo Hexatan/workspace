@@ -1,4 +1,9 @@
 @SuppressWarnings("rawtypes")
+/**
+ * 
+ * @author gaetan duvaux
+ *
+ */
 public class Personne implements java.lang.Comparable {
 	
 	protected String nom;
@@ -28,12 +33,12 @@ public class Personne implements java.lang.Comparable {
 	}
 	
 	/**
-	 * Redefinision de la méthode equals.
+	 * Redefinition de la méthode equals.
 	 */
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null) return false;
-		if (getClass() != o.getClass()) return false;
+		if (!(o instanceof Personne)) return false;
 		Personne other = (Personne) o;
 		if (age != other.age) return false;
 		if (nom == null) {
@@ -70,9 +75,9 @@ public class Personne implements java.lang.Comparable {
 	/**
 	 * Méthode toString qui affiche le nom et l'age de 
 	 */
-	public String toString() {
-		return "nom=" + nom + ", age=" + age;
-	}
+	/*public String toString() {
+		return "\n\nnom=" + nom + "\nage=" + age;
+	}*/
 	
 	/**
 	 * Méthode qui compare les objets dans la liste de personne
