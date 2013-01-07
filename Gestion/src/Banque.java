@@ -69,9 +69,17 @@ public class Banque {
 			}
 			if (cmd.equalsIgnoreCase("debiter") == true) {
 				verifmdp(cl);
-				cl.choixCompte()
-						.debiter(
-								Lire.jfloat("Combien voulez vous débiter de votre compte"));
+				float deb;
+				CompteReleve c = cl.choixCompte();
+				deb = Lire
+						.jfloat("Combien voulez vous débiter de votre compte");
+				if ((c.getSolde() + cl.getDecAuth()) > deb)
+					c.debiter(deb);
+				else if (cl.getNbcompte() > 1) {
+					if ((cl.getT_solde() + cl.getDecAuth()) > deb)
+						;
+				} else
+					Graph.sopn("Action impossible !!! (T'es trop pauvre)");
 			}
 			if (cmd.equalsIgnoreCase("crediter") == true) {
 				verifmdp(cl);

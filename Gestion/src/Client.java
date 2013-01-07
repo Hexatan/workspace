@@ -6,6 +6,7 @@ public class Client {
 	private float t_solde;
 	private ArrayList<CompteReleve> lc = new ArrayList<CompteReleve>();
 	private String mdp;
+	private float decAuth = 200.0f;
 
 	public Client() {
 		this.nomclient = "";
@@ -114,6 +115,14 @@ public class Client {
 
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
+	}
+
+	public float getDecAuth() {
+		return decAuth;
+	}
+
+	public void setDecAuth(float decAuth) {
+		this.decAuth = decAuth;
 	}
 
 }
