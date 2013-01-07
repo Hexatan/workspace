@@ -23,12 +23,8 @@ public class Graph {
 		return str;
 	}
 	
-	public static void sop(String str) {
-		System.out.print(str);
-	}
-	
-	public static void sopn(String str) {
-		System.out.println(str);
+	public static void sopn(Object obj) {
+		System.out.println(obj);
 	}
 	
 	public static String justifie(String av, int n, String str) {

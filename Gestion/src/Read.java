@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 public class Read {
 	public static String Savep = "Save";
 	public static Path save = Paths.get(Savep);
-	public static Charset uni = Charset.forName("unicode");
+	public static Charset uni = Charset.forName("UTF-8");
 
 	public static void client(Client c) throws IOException {
 		Path path = Paths.get(Savep, "Banque.txt");

@@ -1,3 +1,4 @@
+import java.nio.charset.Charset;
 import java.util.Random;
 
 public class Cryptage {
@@ -6,44 +7,66 @@ public class Cryptage {
 	public static int PGCD = 1;
 	public static int a = 0 + r.nextInt(100);
 
-	public static void affine(int a, int b, String mdp) {
-		int xT[] = new int[26];
-		char clairT[] = new char[26];
-		char crypteT[] = new char[26];
-		int yT[] = new int[26];
-		char motCrypteT[] = new char[26];
-		char motClairT[] = new char[26];
-		int x = 0;
-		int y = 0;
-		String motClair = mdp;
-		String motCrypte = "";
-		for (x = 0; x < 26; x++)
-			xT[x] = x;
-		for (x = 0; x < 26; x++) {
-			y = (a * x + b) % 26;
-			yT[x] = y;
-		}
-		for (x = 0; x < 26; x++) {
-			clairT[x] = (char) (x + 97);
-		}
-		for (x = 0; x < 26; x++) {
-			y = (a * x + b) % 26;
-			crypteT[x] = clairT[y];
-		}
-		String lettreA = "" + (char) (a);
-		String lettreB = "" + (char) (b);
-		motCrypte += lettreA;
+	public static char toChar(int codeASCII) {
+		return (char) codeASCII;
+	}
 
-		int nbCaractereCl = motClair.length();
-		for (int i = 0; i < (nbCaractereCl + 1); i++) {
-			for (x = 0; x < 26; x++) {
-				y = (a * x + b) % 26;
-				motCrypteT[i] = crypteT[x];
+	public static int toASCII(char lettre) {
+		return (int) lettre;
+	}
+
+	public static boolean isMaj(char lettre) {
+		if (toASCII(lettre) > 64 && toASCII(lettre) < 91)
+			return true;
+		else
+			return false;
+	}
+
+	public static boolean isMin(char lettre) {
+		if (toASCII(lettre) > 96 && toASCII(lettre) < 123)
+			return true;
+		else
+			return false;
+	}
+
+	/**
+	 * 
+	 * @param a
+	 *            décalage souhaité
+	 * @param mdp
+	 *            chaine de caractères à crypter
+	 * @return chaine de caractères cryptée
+	 */
+	public static String decalc(int a, String mdp) {
+		String textenc = "";
+		char lettre_enc = '\0';
+		char lettre_cl = '\0';
+
+		for (int i = 0; i < mdp.length(); i++) {
+			lettre_cl = mdp.charAt(i);
+			if (toASCII(lettre_cl) == toASCII('z') && a > 0) {
+				lettre_enc = toChar(toASCII('a') + (a - 1));
+			} else if (toASCII(lettre_cl) == toASCII('Z') && a > 0) {
+				lettre_enc = toChar(toASCII('A') + (a - 1));
+			} else {
+				lettre_enc = toChar((lettre_cl) + a);
+				if (toASCII(lettre_enc) > toASCII('z') && isMin(lettre_cl)) {
+					lettre_enc = toChar(toASCII(lettre_enc) - 26);
+				} else if (toASCII(lettre_enc) < toASCII('a')
+						&& isMin(lettre_cl)) {
+					lettre_enc = toChar(toASCII(lettre_enc) + 26);
+				} else if (toASCII(lettre_enc) > toASCII('Z')
+						&& isMaj(lettre_cl)) {
+					lettre_enc = toChar(toASCII(lettre_enc) - 26);
+				} else if (toASCII(lettre_enc) < toASCII('A')
+						&& isMaj(lettre_cl)) {
+					lettre_enc = toChar(toASCII(lettre_enc) + 26);
+				}
 			}
-			motCrypte += motCrypteT[i];
+			textenc += lettre_enc;
 		}
-		motCrypte += lettreB;
-		System.out.println(motCrypte);
+		textenc += toChar(Math.abs((a - 1) % 26 + toASCII('a')));
+		return textenc;
 	}
 
 	public static int PGCD(int a, int b) {
