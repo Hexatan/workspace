@@ -5,6 +5,7 @@ public class Client {
 	private int nbcompte;
 	private float t_solde;
 	private ArrayList<CompteReleve> lc = new ArrayList<CompteReleve>();
+	private String mdp;
 
 	public Client() {
 		this.nomclient = "";
@@ -12,10 +13,11 @@ public class Client {
 		this.t_solde = 0f;
 	}
 
-	public Client(String nom) {
+	public Client(String nom, String mdp) {
 		this.nomclient = nom;
 		this.nbcompte = 0;
 		this.t_solde = 0f;
+		this.mdp = mdp;
 	}
 
 	public String getNomclient() {
@@ -69,9 +71,7 @@ public class Client {
 			float solde = Lire
 					.jfloat("Combien voulez vous mettre dans votre compte ?");
 			int opmax = Lire.jint("Combien d'operation maximale sur releve ?");
-			this.lc.add(new CompteReleve(solde, nom, opmax, this));
-			this.nbcompte++;
-			this.t_solde += solde;
+			ajcompte(new CompteReleve(solde, nom, opmax, this));
 		}
 	}
 
@@ -106,6 +106,14 @@ public class Client {
 
 	public void setLc(ArrayList<CompteReleve> lc) {
 		this.lc = lc;
+	}
+
+	public String getMdp() {
+		return mdp;
+	}
+
+	public void setMdp(String mdp) {
+		this.mdp = mdp;
 	}
 
 }

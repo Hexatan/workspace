@@ -2,6 +2,7 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+@SuppressWarnings("serial")
 public class Tableau extends JFrame {
 
 	public Tableau(CompteReleve c, String nom) {

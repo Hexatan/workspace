@@ -20,7 +20,21 @@ public class Banque {
 	}
 
 	public Client connexion() {
-		return new Client(Lire.jstring("Quel est votre nom ?"));
+		String nomc = Lire.jstring("Quel est votre nom ?");
+		String mdp = Lire.jString("Entrer votre mot de passe");
+		mdp = Cryptage.decalc(mdp);
+		return new Client(nomc, mdp);
+	}
+
+	public void verifmdp(Client cl) {
+		String mdp;
+		do {
+			mdp = Lire.jString("Entrer votre mot de passe");
+			if (mdp.equals(Cryptage.decald(cl.getMdp())) == true)
+				Graph.sopn("Mot de passe accepté");
+			else
+				Graph.sopn("Mot de passe refusé !!!");
+		} while (mdp.equals(Cryptage.decald(cl.getMdp())) == false);
 	}
 
 	public void cgestion(Client cl) throws IOException {
@@ -40,6 +54,7 @@ public class Banque {
 				System.out
 						.print("debiter\ncrediter\nreleve\ncreacompte\nexit\ninfo\ndeco");
 			if (cmd.equalsIgnoreCase("releve") == true) {
+				verifmdp(cl);
 				cl.calcT_solde();
 				CompteReleve c = cl.choixCompte();
 				String titre = "Relevé du compte : " + c.getNom() + " de Mr."
@@ -48,17 +63,22 @@ public class Banque {
 				r1.setVisible(true);
 			}
 			if (cmd.equalsIgnoreCase("creacompte") == true) {
+				verifmdp(cl);
 				cl.creaCompte();
 				this.ajcompte(cl);
 			}
-			if (cmd.equalsIgnoreCase("debiter") == true)
+			if (cmd.equalsIgnoreCase("debiter") == true) {
+				verifmdp(cl);
 				cl.choixCompte()
 						.debiter(
 								Lire.jfloat("Combien voulez vous débiter de votre compte"));
-			if (cmd.equalsIgnoreCase("crediter") == true)
+			}
+			if (cmd.equalsIgnoreCase("crediter") == true) {
+				verifmdp(cl);
 				cl.choixCompte()
 						.crediter(
 								Lire.jfloat("Combien voulez vous créditer sur votre compte"));
+			}
 			if (cmd.equalsIgnoreCase("info") == true)
 				System.out.println(this + "\n\t" + cl.toString());
 			if (cmd.equalsIgnoreCase("deco") == true)
