@@ -2,13 +2,15 @@ public class Compte {
 	protected float solde;
 	protected String nom;
 	protected float soldeini;
+	protected Client proprietaire;
 
 	public Compte() {
 		this.solde = 0;
 		this.soldeini = 0;
+		this.proprietaire = null;
 	}
 
-	public Compte(float solde, String nom) {
+	public Compte(float solde, String nom,Client p) {
 		if (solde < 0) {
 			this.solde = 0;
 			this.soldeini = 0;
@@ -17,6 +19,7 @@ public class Compte {
 			this.soldeini = solde;
 		}
 		this.nom = nom;
+		this.proprietaire = p;
 	}
 
 	public void setNom(String nom) {
@@ -57,5 +60,17 @@ public class Compte {
 
 	public String toString() {
 		return this.nom + "|" + this.solde;
+	}
+
+	public Client getProprietaire() {
+		return proprietaire;
+	}
+
+	public void setProprietaire(Client proprietaire) {
+		this.proprietaire = proprietaire;
+	}
+
+	public float getSoldeini() {
+		return soldeini;
 	}
 }

@@ -69,13 +69,13 @@ public class Client {
 			float solde = Lire
 					.jfloat("Combien voulez vous mettre dans votre compte ?");
 			int opmax = Lire.jint("Combien d'operation maximale sur releve ?");
-			this.lc.add(new CompteReleve(solde, nom, opmax));
+			this.lc.add(new CompteReleve(solde, nom, opmax, this));
 			this.nbcompte++;
 			this.t_solde += solde;
 		}
 	}
-	
-	public void ajcompte(CompteReleve c){
+
+	public void ajcompte(CompteReleve c) {
 		this.lc.add(c);
 		this.nbcompte++;
 		this.t_solde += c.getSolde();

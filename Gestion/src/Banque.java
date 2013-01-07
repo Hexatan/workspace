@@ -11,8 +11,8 @@ public class Banque {
 		this.capital = capital;
 	}
 
-	public void ajcompte(CompteReleve c) {
-		lcompte.add(c);
+	public void ajcompte(Client cl) {
+		lcompte.add(cl.choixCompte());
 	}
 
 	public void ajclient(ArrayList<CompteReleve> list_c) {
@@ -49,8 +49,7 @@ public class Banque {
 			}
 			if (cmd.equalsIgnoreCase("creacompte") == true) {
 				cl.creaCompte();
-				CompteReleve c = cl.getLc().get(cl.getLc().size() - 1);
-				this.ajcompte(c);
+				this.ajcompte(cl);
 			}
 			if (cmd.equalsIgnoreCase("debiter") == true)
 				cl.choixCompte()

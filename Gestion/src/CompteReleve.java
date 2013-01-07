@@ -9,20 +9,20 @@ public class CompteReleve extends Compte {
 		super();
 	}
 
-	public CompteReleve(float somme, String nom) {
-		super(somme, nom);
+	public CompteReleve(float somme, String nom, Client p) {
+		super(somme, nom, p);
 		this.opeffectue = 0;
 		this.operationmax = 5;
 	}
 
-	public CompteReleve(float somme, String nom, int opmax) {
-		super(somme, nom);
+	public CompteReleve(float somme, String nom, int opmax, Client p) {
+		super(somme, nom, p);
 		this.operationmax = opmax;
 		this.opeffectue = 0;
 	}
 
-	public CompteReleve(Compte compte, int opmax) {
-		super(compte.getSolde(), compte.getNom());
+	public CompteReleve(Compte compte, int opmax, Client p) {
+		super(compte.getSolde(), compte.getNom(), p);
 		this.operationmax = opmax;
 		this.opeffectue = 0;
 	}
