@@ -14,7 +14,7 @@ public class Brigand extends Humain {
 	}
 	
 	public void kidnap(Dame d){
-		System.out.println("Ah Ah !" + d + " tu es mienne désormais");
+		System.out.println(parle("Ah Ah !" + d + " tu es mienne désormais"));
 		this.nde++;
 		d.skidnap();
 	}
@@ -23,16 +23,8 @@ public class Brigand extends Humain {
 		return look;
 	}
 
-	public void setLook(String look) {
-		this.look = look;
-	}
-
 	public int getNde() {
 		return nde;
-	}
-
-	public void setNde(int nde) {
-		this.nde = nde;
 	}
 	
 	public float getRecompense() {

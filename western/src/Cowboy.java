@@ -10,8 +10,8 @@ public class Cowboy extends Humain{
 	}
 	
 	public void tire(Brigand d){
-		parle("Le " + this.adj + " " + this.nom + " sur " + d.nom + " . PAN!");
-		parle("Prend ça, sale rascal !");
+		System.out.println(parle("Le " + this.adj + " " + this.nom + " sur " + d.nom + " . PAN!"));
+		System.out.println(parle("Prend ça, sale rascal !"));
 	}
 	
 	public void libere(Dame d){

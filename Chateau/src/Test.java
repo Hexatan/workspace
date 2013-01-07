@@ -1,6 +1,6 @@
 public class Test {
 	public static void main(String[] args) {
-		Fenetre f1 = new Fenetre("Ma deuxième fenètre Java", 800, 600);
+		Jeu f1 = new Jeu();
 		Graph.sop(f1.getWidth());
 	}
 }
