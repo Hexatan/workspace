@@ -11,9 +11,12 @@ public class Banque {
 		this.capital = capital;
 	}
 
-	public void ajcompte(Client cl) {
-		ArrayList<CompteReleve> clone = (ArrayList<CompteReleve>) cl.getLc().clone();
-		lcompte = clone;
+	public void ajcompte(CompteReleve c) {
+		lcompte.add(c);
+	}
+
+	public void ajclient(ArrayList<CompteReleve> list_c) {
+		lcompte.addAll(list_c);
 	}
 
 	public Client connexion() {
@@ -37,14 +40,17 @@ public class Banque {
 				System.out
 						.print("debiter\ncrediter\nreleve\ncreacompte\nexit\ninfo\ndeco");
 			if (cmd.equalsIgnoreCase("releve") == true) {
-				if (cl.getNbcompte() != 1)
-					Releve.affichage(cl, cl.choixCompte());
-				else
-					Releve.affichage(cl, cl.choixCompte());
+				cl.calcT_solde();
+				CompteReleve c = cl.choixCompte();
+				String titre = "Relevé du compte : " + c.getNom() + " de Mr."
+						+ cl.getNomclient();
+				Tableau r1 = new Tableau(c, titre);
+				r1.setVisible(true);
 			}
 			if (cmd.equalsIgnoreCase("creacompte") == true) {
 				cl.creaCompte();
-				this.ajcompte(cl);
+				CompteReleve c = cl.getLc().get(cl.getLc().size() - 1);
+				this.ajcompte(c);
 			}
 			if (cmd.equalsIgnoreCase("debiter") == true)
 				cl.choixCompte()
@@ -55,7 +61,7 @@ public class Banque {
 						.crediter(
 								Lire.jfloat("Combien voulez vous créditer sur votre compte"));
 			if (cmd.equalsIgnoreCase("info") == true)
-				System.out.println(this + cl.toString());
+				System.out.println(this + "\n\t" + cl.toString());
 			if (cmd.equalsIgnoreCase("deco") == true)
 				this.cgestion(this.connexion());
 			if (cmd.equalsIgnoreCase("read") == true)

@@ -53,9 +53,14 @@ public class Client {
 			if (tcon == 2)
 				System.out
 						.println("Apparement il te manque quelque chose dans ton cerveau");
-			else if (tcon >= 5)
+			else if (tcon >= 3) {
 				System.out
 						.println("Qu'est ce que tu comprends pas dans (oui/non)");
+				if (tcon == 5) {
+					Graph.sopn("Bon t'es trop con !!!" + "\n" + "Aurevoir");
+					System.exit(0);
+				}
+			}
 		} while (str.equalsIgnoreCase("oui") != true
 				&& str.equalsIgnoreCase("non") != true);
 		if (str.equalsIgnoreCase("oui") == true) {
@@ -66,8 +71,14 @@ public class Client {
 			int opmax = Lire.jint("Combien d'operation maximale sur releve ?");
 			this.lc.add(new CompteReleve(solde, nom, opmax));
 			this.nbcompte++;
-			Releve.soo = solde;
+			this.t_solde += solde;
 		}
+	}
+	
+	public void ajcompte(CompteReleve c){
+		this.lc.add(c);
+		this.nbcompte++;
+		this.t_solde += c.getSolde();
 	}
 
 	public CompteReleve choixCompte() {
@@ -75,9 +86,26 @@ public class Client {
 			for (int i = 0; i < this.getLc().size(); i++)
 				System.out.println((i + 1) + ":" + this.getLc().get(i));
 			int chx = Lire.jint("Quel compte voulez vous choisir ?");
-			return this.getLc().get(chx - 1);
+			return this.lc.get(chx - 1);
 		}
-		return this.getLc().get(0);
+		return this.lc.get(0);
+	}
+
+	public void calcT_solde() {
+		for (int i = 0; i < lc.size(); i++)
+			t_solde += lc.get(i).getSolde();
+	}
+
+	public void setNbcompte(int nbcompte) {
+		this.nbcompte = nbcompte;
+	}
+
+	public void setT_solde(float t_solde) {
+		this.t_solde = t_solde;
+	}
+
+	public void setLc(ArrayList<CompteReleve> lc) {
+		this.lc = lc;
 	}
 
 }

@@ -5,6 +5,10 @@ public class CompteReleve extends Compte {
 	private int opeffectue;
 	private ArrayList<Float> op = new ArrayList<Float>();
 
+	public CompteReleve() {
+		super();
+	}
+
 	public CompteReleve(float somme, String nom) {
 		super(somme, nom);
 		this.opeffectue = 0;
@@ -58,5 +62,17 @@ public class CompteReleve extends Compte {
 				System.out.println("Opération " + (i + 1) + "			  " + "+"
 						+ this.op.get(i) + " Euros");
 		}
+	}
+
+	public ArrayList<Float> getOp() {
+		return op;
+	}
+
+	public int getOperationmax() {
+		return operationmax;
+	}
+
+	public void setOperationmax(int operationmax) {
+		this.operationmax = operationmax;
 	}
 }

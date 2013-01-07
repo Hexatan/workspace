@@ -1,17 +1,30 @@
 public class Compte {
 	protected float solde;
 	protected String nom;
+	protected float soldeini;
 
 	public Compte() {
 		this.solde = 0;
+		this.soldeini = 0;
 	}
 
 	public Compte(float solde, String nom) {
-		if (solde < 0)
+		if (solde < 0) {
 			this.solde = 0;
-		else
+			this.soldeini = 0;
+		} else {
 			this.solde = solde;
+			this.soldeini = solde;
+		}
 		this.nom = nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public void setSoldeini(float soldeini) {
+		this.soldeini = soldeini;
 	}
 
 	public String getNom() {
