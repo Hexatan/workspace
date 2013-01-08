@@ -4,7 +4,7 @@ public class Cryptage {
 	public static Random r = new Random();
 	public static int b = 0 + r.nextInt(50);
 	public static int PGCD = 1;
-	public static int a = 0 + r.nextInt(50);
+	public static int a = -25 + r.nextInt(50);
 
 	public static char toChar(int codeASCII) {
 		return (char) codeASCII;
@@ -57,24 +57,15 @@ public class Cryptage {
 
 		for (int i = 0; i < mdp.length(); i++) {
 			lettre_cl = mdp.charAt(i);
-			if (toASCII(lettre_cl) == toASCII('z') && a > 0) {
-				lettre_enc = toChar(toASCII('a') + (a - 1));
-			} else if (toASCII(lettre_cl) == toASCII('Z') && a > 0) {
-				lettre_enc = toChar(toASCII('A') + (a - 1));
-			} else {
-				lettre_enc = toChar((lettre_cl) + a);
-				if (toASCII(lettre_enc) > toASCII('z') && isMin(lettre_cl)) {
-					lettre_enc = toChar(toASCII(lettre_enc) - 26);
-				} else if (toASCII(lettre_enc) < toASCII('a')
-						&& isMin(lettre_cl)) {
-					lettre_enc = toChar(toASCII(lettre_enc) + 26);
-				} else if (toASCII(lettre_enc) > toASCII('Z')
-						&& isMaj(lettre_cl)) {
-					lettre_enc = toChar(toASCII(lettre_enc) - 26);
-				} else if (toASCII(lettre_enc) < toASCII('A')
-						&& isMaj(lettre_cl)) {
-					lettre_enc = toChar(toASCII(lettre_enc) + 26);
-				}
+			lettre_enc = toChar((lettre_cl) + a);
+			if (toASCII(lettre_enc) > toASCII('z') && isMin(lettre_cl)) {
+				lettre_enc = toChar(toASCII(lettre_enc) - 26);
+			} else if (toASCII(lettre_enc) < toASCII('a') && isMin(lettre_cl)) {
+				lettre_enc = toChar(toASCII(lettre_enc) + 26);
+			} else if (toASCII(lettre_enc) > toASCII('Z') && isMaj(lettre_cl)) {
+				lettre_enc = toChar(toASCII(lettre_enc) - 26);
+			} else if (toASCII(lettre_enc) < toASCII('A') && isMaj(lettre_cl)) {
+				lettre_enc = toChar(toASCII(lettre_enc) + 26);
 			}
 			textenc += lettre_enc;
 		}
@@ -90,24 +81,15 @@ public class Cryptage {
 
 		for (int i = 0; i < mdp.length() - 1; i++) {
 			lettre_enc = mdp.charAt(i);
-			if (toASCII(lettre_enc) == toASCII('z') && cle > 0) {
-				lettre_dec = toChar(toASCII('a') + (cle - 1));
-			} else if (toASCII(lettre_enc) == toASCII('Z') && cle > 0) {
-				lettre_dec = toChar(toASCII('A') + (cle - 1));
-			} else {
-				lettre_dec = toChar((lettre_enc) + cle);
-				if (toASCII(lettre_dec) > toASCII('z') && isMin(lettre_enc)) {
-					lettre_dec = toChar(toASCII(lettre_enc) - (26 - cle));
-				} else if (toASCII(lettre_dec) < toASCII('a')
-						&& isMin(lettre_enc)) {
-					lettre_dec = toChar(toASCII(lettre_enc) + (26 + cle));
-				} else if (toASCII(lettre_dec) > toASCII('Z')
-						&& isMaj(lettre_enc)) {
-					lettre_dec = toChar(toASCII(lettre_enc) - (26 - cle));
-				} else if (toASCII(lettre_dec) < toASCII('A')
-						&& isMaj(lettre_enc)) {
-					lettre_dec = toChar(toASCII(lettre_enc) + (26 + cle));
-				}
+			lettre_dec = toChar((lettre_enc) + cle);
+			if (toASCII(lettre_dec) > toASCII('z') && isMin(lettre_enc)) {
+				lettre_dec = toChar(toASCII(lettre_enc) - (26 - cle));
+			} else if (toASCII(lettre_dec) < toASCII('a') && isMin(lettre_enc)) {
+				lettre_dec = toChar(toASCII(lettre_enc) + (26 + cle));
+			} else if (toASCII(lettre_dec) > toASCII('Z') && isMaj(lettre_enc)) {
+				lettre_dec = toChar(toASCII(lettre_enc) - (26 - cle));
+			} else if (toASCII(lettre_dec) < toASCII('A') && isMaj(lettre_enc)) {
+				lettre_dec = toChar(toASCII(lettre_enc) + (26 + cle));
 			}
 			textdec += lettre_dec;
 		}
